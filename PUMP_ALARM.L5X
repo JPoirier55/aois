@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="29.00" TargetName="PUMP_ALARM" TargetType="AddOnInstructionDefinition" TargetRevision="1.0 " TargetLastEdited="2018-04-10T12:14:39.983Z" ContainsContext="true" Owner="Windows User" ExportDate="Tue Apr 10 12:46:22 2018" ExportOptions="References NoRawData L5KData DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Context" Name="TEST">
+<DataTypes Use="Context">
+</DataTypes>
+<AddOnInstructionDefinitions Use="Context">
+<AddOnInstructionDefinition Name="DINT_HIGH_COUNT" Revision="1.0" Vendor="AXI INTERNATIONAL" ExecutePrescan="false" ExecutePostscan="false" ExecuteEnableInFalse="false" CreatedDate="2018-04-05T18:30:13.101Z" CreatedBy="AXI-FL\agoodfellow" EditedDate="2018-04-05T19:11:10.567Z" EditedBy="AXI-FL\agoodfellow" SoftwareRevision="v29.00"
+>
+<Parameters>
+<Parameter Name="EnableIn" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Input - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="EnableOut" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Output - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="INPUT_VALUE" TagType="Base" DataType="DINT" Usage="Input" Radix="Decimal" Required="true" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="OUTPUT_COUNT" TagType="Base" DataType="DINT" Usage="Output" Radix="Decimal" Required="true" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+</Parameters>
+<LocalTags>
+<LocalTag Name="DN" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="INTERNAL_COUNT" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="BIT_CHECKED" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="LAST_VALUE" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="NEW_COUNT" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+</LocalTags>
+<Routines>
+<Routine Name="Logic" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment>
+<![CDATA[CALL FOR FUEL COUNT]]>
+</Comment>
+<Text>
+<![CDATA[NEQ(INPUT_VALUE,LAST_VALUE)MOV(INPUT_VALUE,LAST_VALUE)OTL(NEW_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[XIC(NEW_COUNT)MOV(0,INTERNAL_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[XIC(NEW_COUNT)XIC(INPUT_VALUE.0)ADD(INTERNAL_COUNT,1,INTERNAL_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[XIC(NEW_COUNT)XIC(INPUT_VALUE.1)ADD(INTERNAL_COUNT,1,INTERNAL_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[XIC(NEW_COUNT)XIC(INPUT_VALUE.2)ADD(INTERNAL_COUNT,1,INTERNAL_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[XIC(NEW_COUNT)XIC(INPUT_VALUE.3)ADD(INTERNAL_COUNT,1,INTERNAL_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Text>
+<![CDATA[XIC(NEW_COUNT)MOV(INTERNAL_COUNT,OUTPUT_COUNT)OTU(NEW_COUNT);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</AddOnInstructionDefinition>
+<AddOnInstructionDefinition Use="Target" Name="PUMP_ALARM" Revision="1.0" Vendor="AXI INTERNATIONAL" ExecutePrescan="false" ExecutePostscan="false" ExecuteEnableInFalse="true" CreatedDate="2018-04-07T16:24:00.178Z" CreatedBy="AXI-FL\agoodfellow" EditedDate="2018-04-10T12:14:39.983Z" EditedBy="AXI-FL\agoodfellow"
+ SoftwareRevision="v29.00">
+<Parameters>
+<Parameter Name="EnableIn" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Input - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="EnableOut" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Output - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="PENDING" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="ERROR" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="RESET" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="ACTIVE_COUNT" TagType="Base" DataType="DINT" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="PENDING_COUNT" TagType="Base" DataType="DINT" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="LEAK_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="VACUUM_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="PRESSURE_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="FLOW_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="OVERLOAD_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="SOFTSTART_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="DISABLE_TRIGGER" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="LEAK_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="VACUUM_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="PRESSURE_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="FLOW_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="OVERLOAD_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="SOFTSTART_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="VACUUM_PENDING" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="PRESSURE_PENDING" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="FLOW_PENDING" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="OVERLOAD_PENDING" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="SOFTSTART_PENDING" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="DISABLE_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="VACUUM_DEBOUNCE" TagType="Base" DataType="DINT" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="PRESSURE_DEBOUNCE" TagType="Base" DataType="DINT" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="OVERLOAD_DEBOUNCE" TagType="Base" DataType="DINT" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="FLOW_DEBOUNCE" TagType="Base" DataType="DINT" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="SOFTSTART_DEBOUNCE" TagType="Base" DataType="DINT" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+</Parameters>
+<LocalTags>
+<LocalTag Name="ACTIVE_ALARMS" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="ACTIVE_COUNTER" DataType="DINT_HIGH_COUNT" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[1,0,0,0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="DINT_HIGH_COUNT">
+<DataValueMember Name="EnableIn" DataType="BOOL" Value="1"/>
+<DataValueMember Name="EnableOut" DataType="BOOL" Value="0"/>
+<DataValueMember Name="INPUT_VALUE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="OUTPUT_COUNT" DataType="DINT" Radix="Decimal" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="PENDING_COUNTER" DataType="DINT_HIGH_COUNT" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[1,0,0,0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="DINT_HIGH_COUNT">
+<DataValueMember Name="EnableIn" DataType="BOOL" Value="1"/>
+<DataValueMember Name="EnableOut" DataType="BOOL" Value="0"/>
+<DataValueMember Name="INPUT_VALUE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="OUTPUT_COUNT" DataType="DINT" Radix="Decimal" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="PENDING_ALARMS" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="VAC_DEBOUNCE_TIMER" DataType="TIMER" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="PRESS_DEBOUNCE_TIMER" DataType="TIMER" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="OVERLOAD_DEBOUNCE_TIMER" DataType="TIMER" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="FLOW_DEBOUNCE_TIMER" DataType="TIMER" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="SOFTSTART_DEBOUNCE_TIMER" DataType="TIMER" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[[0,0,0]]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</DefaultData>
+</LocalTag>
+</LocalTags>
+<Routines>
+<Routine Name="EnableInFalse" Type="RLL">
+<Description>
+<![CDATA[ALARM]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[OTL(ERROR)OTU(ACTIVE);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Logic" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment>
+<![CDATA[ALARM STATUS CHECKS]]>
+</Comment>
+<Text>
+<![CDATA[DINT_HIGH_COUNT(ACTIVE_COUNTER,ACTIVE_ALARMS,ACTIVE_COUNT)DINT_HIGH_COUNT(PENDING_COUNTER,PENDING_ALARMS,PENDING_COUNT);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[XIC(RESET)CLR(ACTIVE_ALARMS);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[XIO(ERROR)OTE(EnableOut);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[GRT(ACTIVE_COUNT,0)XIO(ERROR)OTE(ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[GRT(PENDING_COUNT,0)XIO(ERROR)XIO(ACTIVE)OTE(PENDING);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[[LES(ACTIVE_COUNT,0) ,LES(PENDING_COUNT,0) ]OTE(ERROR);]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment>
+<![CDATA[HIGH VACUUM]]>
+</Comment>
+<Text>
+<![CDATA[XIC(VACUUM_TRIGGER)[MOV(VACUUM_DEBOUNCE,VAC_DEBOUNCE_TIMER.PRE) TON(VAC_DEBOUNCE_TIMER,?,?) ,XIC(VAC_DEBOUNCE_TIMER.DN) OTL(ACTIVE_ALARMS.1) ,XIO(VAC_DEBOUNCE_TIMER.DN) XIC(VAC_DEBOUNCE_TIMER.EN) OTE(PENDING_ALARMS.1) ];]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.1)OTE(VACUUM_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Text>
+<![CDATA[XIC(PENDING_ALARMS.1)OTE(VACUUM_PENDING);]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment>
+<![CDATA[HIGH PRESSURE]]>
+</Comment>
+<Text>
+<![CDATA[XIC(PRESSURE_TRIGGER)[MOV(PRESSURE_DEBOUNCE,PRESS_DEBOUNCE_TIMER.PRE) TON(PRESS_DEBOUNCE_TIMER,?,?) OTE(PENDING_ALARMS.2) ,XIC(PRESS_DEBOUNCE_TIMER.DN) OTL(ACTIVE_ALARMS.2) ];]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.2)OTE(PRESSURE_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Text>
+<![CDATA[XIC(PENDING_ALARMS.2)OTE(PRESSURE_PENDING);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment>
+<![CDATA[LOW FLOW]]>
+</Comment>
+<Text>
+<![CDATA[XIC(FLOW_TRIGGER)[MOV(FLOW_DEBOUNCE,FLOW_DEBOUNCE_TIMER.PRE) TON(FLOW_DEBOUNCE_TIMER,?,?) OTE(PENDING_ALARMS.3) ,XIC(FLOW_DEBOUNCE_TIMER.DN) OTL(ACTIVE_ALARMS.3) ];]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.3)OTE(FLOW_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Text>
+<![CDATA[XIC(PENDING_ALARMS.3)OTE(FLOW_PENDING);]]>
+</Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment>
+<![CDATA[OVERLOAD OPEN]]>
+</Comment>
+<Text>
+<![CDATA[XIC(OVERLOAD_TRIGGER)[MOV(OVERLOAD_DEBOUNCE,OVERLOAD_DEBOUNCE_TIMER.PRE) TON(OVERLOAD_DEBOUNCE_TIMER,?,?) OTE(PENDING_ALARMS.4) ,XIC(OVERLOAD_DEBOUNCE_TIMER.DN) OTL(ACTIVE_ALARMS.4) ];]]>
+</Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.4)OTE(OVERLOAD_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Text>
+<![CDATA[XIC(PENDING_ALARMS.4)OTE(OVERLOAD_PENDING);]]>
+</Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Comment>
+<![CDATA[SOFTSTART FAIL]]>
+</Comment>
+<Text>
+<![CDATA[XIC(SOFTSTART_TRIGGER)[MOV(SOFTSTART_DEBOUNCE,SOFTSTART_DEBOUNCE_TIMER.PRE) TON(SOFTSTART_DEBOUNCE_TIMER,?,?) OTE(PENDING_ALARMS.5) ,XIC(SOFTSTART_DEBOUNCE_TIMER.DN) OTL(ACTIVE_ALARMS.5) ];]]>
+</Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.5)OTE(SOFTSTART_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Text>
+<![CDATA[XIC(PENDING_ALARMS.5)OTE(SOFTSTART_PENDING);]]>
+</Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment>
+<![CDATA[LEAK DETECTED]]>
+</Comment>
+<Text>
+<![CDATA[XIC(LEAK_TRIGGER)OTL(ACTIVE_ALARMS.0);]]>
+</Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.1)OTE(LEAK_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Comment>
+<![CDATA[DISABLE OPERATION]]>
+</Comment>
+<Text>
+<![CDATA[XIC(DISABLE_TRIGGER)OTE(ACTIVE_ALARMS.6);]]>
+</Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Text>
+<![CDATA[XIC(ACTIVE_ALARMS.6)OTE(DISABLE_ACTIVE);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+<Dependencies>
+<Dependency Type="AddOnInstructionDefinition" Name="DINT_HIGH_COUNT"/>
+</Dependencies>
+</AddOnInstructionDefinition>
+</AddOnInstructionDefinitions>
+</Controller>
+</RSLogix5000Content>

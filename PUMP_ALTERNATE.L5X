@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="29.00" TargetName="PUMP_ALTERNATE" TargetType="AddOnInstructionDefinition" TargetRevision="1.0 " TargetLastEdited="2018-04-09T22:23:55.377Z" ContainsContext="true" Owner="Windows User" ExportDate="Tue Apr 10 12:46:36 2018" ExportOptions="References NoRawData L5KData DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Context" Name="TEST">
+<DataTypes Use="Context">
+</DataTypes>
+<AddOnInstructionDefinitions Use="Context">
+<AddOnInstructionDefinition Use="Target" Name="PUMP_ALTERNATE" Revision="1.0" Vendor="AXI INTERNATIONAL" ExecutePrescan="false" ExecutePostscan="false" ExecuteEnableInFalse="true" CreatedDate="2018-04-05T12:06:10.658Z" CreatedBy="AXI-FL\agoodfellow" EditedDate="2018-04-09T22:23:55.377Z" EditedBy="AXI-FL\agoodfellow"
+ SoftwareRevision="v29.00">
+<Parameters>
+<Parameter Name="EnableIn" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Input - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="EnableOut" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Output - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="LEAD_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="LAG_ACTIVE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="LEAD_FAIL" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="LAG_FAIL" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="ENABLE_LEAD" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="ENABLE_LAG" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="P1_LEAD_PB" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P2_LEAD_PB" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P1_ACTIVATE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P1_ALARM" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="P2_ACTIVATE" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P2_ALARM" TagType="Base" DataType="BOOL" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false"/>
+<Parameter Name="P1_LAG" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P2_LAG" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P1_LEAD" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="P2_LEAD" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+</Parameters>
+<LocalTags>
+<LocalTag Name="LAG_INDEX" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="LEAD_INDEX" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="INCREMENT_LAG" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="INCREMENT_LEAD" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="ENABLE_LEAD_OB" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="ENABLE_LEAD_SB" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="P1_LEAD_SB" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="P1_LEAD_OB" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="P2_LEAD_SB" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="P2_LEAD_OB" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="P1_ACTIVE" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="P2_ACTIVE" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="NO_PUMPS" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="NO_LAG" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+</LocalTags>
+<Routines>
+<Routine Name="EnableInFalse" Type="RLL">
+<Description>
+<![CDATA[DE-ENERGIZE]]>
+</Description>
+<RLLContent>
+<Rung Number="0" Type="N">
+<Text>
+<![CDATA[OTU(P1_ACTIVATE);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Text>
+<![CDATA[OTU(P2_ACTIVATE);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[OTU(LEAD_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Text>
+<![CDATA[OTU(LAG_ACTIVE);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Logic" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment>
+<![CDATA[CHECK FOR TOTAL FAILURE]]>
+</Comment>
+<Text>
+<![CDATA[XIC(P1_ALARM)XIC(P2_ALARM)OTE(NO_PUMPS);]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment>
+<![CDATA[SET PUMP 1 AS LEAD]]>
+</Comment>
+<Text>
+<![CDATA[XIC(P1_LEAD_PB)OSR(P1_LEAD_SB,P1_LEAD_OB);]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Text>
+<![CDATA[XIC(P1_LEAD_OB)XIO(P1_LEAD)MOV(1,LEAD_INDEX);]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment>
+<![CDATA[SET PUMP 2 AS LEAD]]>
+</Comment>
+<Text>
+<![CDATA[XIC(P2_LEAD_PB)OSR(P2_LEAD_SB,P2_LEAD_OB);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[XIC(P2_LEAD_OB)XIO(P2_LEAD)MOV(2,LEAD_INDEX);]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment>
+<![CDATA[ENABLE LEAD]]>
+</Comment>
+<Text>
+<![CDATA[XIO(NO_PUMPS)XIC(ENABLE_LEAD)[XIC(P1_LEAD) [XIC(P1_ALARM) OTL(INCREMENT_LEAD) ,XIO(P1_ALARM) OTL(P1_ACTIVATE) ] ,XIC(P2_LEAD) [XIC(P2_ALARM) OTL(INCREMENT_LEAD) ,XIO(P2_ALARM) OTL(P2_ACTIVATE) ] ];]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Text>
+<![CDATA[XIO(ENABLE_LEAD)[XIC(P1_LEAD) OTU(P1_ACTIVATE) ,XIC(P2_LEAD) OTU(P2_ACTIVATE) ];]]>
+</Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment>
+<![CDATA[ENABLE LAG]]>
+</Comment>
+<Text>
+<![CDATA[XIO(NO_LAG)XIC(ENABLE_LAG)XIC(ENABLE_LEAD)[XIC(P1_LAG) [XIC(P1_ALARM) OTL(INCREMENT_LAG) ,XIO(P1_ALARM) OTL(P1_ACTIVATE) ] ,XIC(P2_LAG) [XIC(P2_ALARM) OTL(INCREMENT_LAG) ,XIO(P2_ALARM) OTL(P2_ACTIVATE) ] ];]]>
+</Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Text>
+<![CDATA[[XIO(ENABLE_LAG) ,XIO(ENABLE_LEAD) ][XIC(P1_LAG) OTU(P1_ACTIVATE) ,XIC(P2_LAG) OTU(P2_ACTIVATE) ];]]>
+</Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment>
+<![CDATA[INCREMENT LEAD INDEX]]>
+</Comment>
+<Text>
+<![CDATA[XIC(INCREMENT_LEAD)XIO(NO_PUMPS)ADD(LEAD_INDEX,1,LEAD_INDEX)OTU(INCREMENT_LEAD);]]>
+</Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Text>
+<![CDATA[EQU(LEAD_INDEX,1)OTE(P1_LEAD);]]>
+</Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Text>
+<![CDATA[EQU(LEAD_INDEX,2)OTE(P2_LEAD);]]>
+</Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Text>
+<![CDATA[[GRT(LEAD_INDEX,2) ,XIO(NO_PUMPS) LES(LEAD_INDEX,1) ]MOV(1,LEAD_INDEX);]]>
+</Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Text>
+<![CDATA[XIC(NO_PUMPS)MOV(0,LEAD_INDEX);]]>
+</Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment>
+<![CDATA[INCREMENT LAG INDEX]]>
+</Comment>
+<Text>
+<![CDATA[XIC(INCREMENT_LAG)XIO(NO_LAG)ADD(LAG_INDEX,1,LAG_INDEX)OTU(INCREMENT_LAG);]]>
+</Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Text>
+<![CDATA[EQU(LEAD_INDEX,LAG_INDEX)OTL(INCREMENT_LAG);]]>
+</Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Text>
+<![CDATA[EQU(LAG_INDEX,1)OTE(P1_LAG);]]>
+</Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Text>
+<![CDATA[EQU(LAG_INDEX,2)OTE(P2_LAG);]]>
+</Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Text>
+<![CDATA[[GRT(LAG_INDEX,2) ,XIO(NO_LAG) LES(LAG_INDEX,1) ]MOV(1,LAG_INDEX);]]>
+</Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Text>
+<![CDATA[XIC(NO_LAG)MOV(0,LAG_INDEX);]]>
+</Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment>
+<![CDATA[ON ENABLE FALLING TRIGGER INCREMENT LEAD]]>
+</Comment>
+<Text>
+<![CDATA[XIC(ENABLE_LEAD)OSF(ENABLE_LEAD_SB,ENABLE_LEAD_OB);]]>
+</Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Text>
+<![CDATA[XIC(ENABLE_LEAD_OB)OTL(INCREMENT_LEAD);]]>
+</Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Comment>
+<![CDATA[CHECK FOR LAG AVAILABLE]]>
+</Comment>
+<Text>
+<![CDATA[[XIO(P1_ALARM) XIC(P2_ALARM) ,XIC(P1_ALARM) XIO(P2_ALARM) ]OTE(NO_LAG);]]>
+</Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Comment>
+<![CDATA[SET OUTPUT BLOCK BITS]]>
+</Comment>
+<Text>
+<![CDATA[[XIC(P1_LEAD) XIC(P1_ACTIVATE) XIC(P1_ALARM) ,XIC(P2_LEAD) XIC(P2_ACTIVATE) XIC(P2_ALARM) ]OTE(LEAD_FAIL);]]>
+</Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Text>
+<![CDATA[[XIC(P1_LAG) XIC(P1_ACTIVATE) XIC(P1_ALARM) ,XIC(P2_LAG) XIC(P2_ACTIVATE) XIC(P2_ALARM) ]OTE(LAG_FAIL);]]>
+</Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Text>
+<![CDATA[[XIC(P1_ACTIVATE) XIC(P1_LEAD) ,XIC(P2_ACTIVATE) XIC(P2_LEAD) ]OTE(LEAD_ACTIVE);]]>
+</Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Text>
+<![CDATA[[XIC(P1_ACTIVATE) XIC(P1_LAG) ,XIC(P2_ACTIVATE) XIC(P2_LAG) ]OTE(LAG_ACTIVE);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</AddOnInstructionDefinition>
+</AddOnInstructionDefinitions>
+</Controller>
+</RSLogix5000Content>
